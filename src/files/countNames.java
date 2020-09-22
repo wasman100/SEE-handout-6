@@ -2,6 +2,7 @@ package files;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.ArrayList;
 
 import acm.program.*;
@@ -9,28 +10,39 @@ import acm.program.*;
 public class countNames extends ConsoleProgram {
 public void run() {
 		
-		HashMap<String, String> Names = new HashMap<String, String>();
+		HashMap<String, Integer> Names = new HashMap<String, Integer>();
 		Names=nameGenerator();
-		println("Unique name list contains:");
 		singleLineList(Names);
 	}
 
-	private void singleLineList(HashMap<String, String> names) {
+	private void singleLineList(HashMap<String, Integer> names) {
 		// TODO Auto-generated method stub
-		for(int i =0; i<names.size(); i++) {
-			println(names.get(Integer.toString(i)));
-		}
+			Iterator<String> it = names.keySet().iterator();
+			while (it.hasNext()) {
+			String key = it.next();
+			int count = names.get(key);
+			if(key.equals("")) {
+				
+			}else {
+			println("Entry [" + key + "] has count " + count);	
+			}
+
+			}
 	}
 
-	private HashMap<String, String> nameGenerator() {
+	private HashMap<String, Integer> nameGenerator() {
 		String name ="";
-		int counter = 0;
-		HashMap<String, String> Names = new HashMap<String, String>();
+		HashMap<String, Integer> Names = new HashMap<String, Integer>();
 		do {
+
 			name = readLine("Enter name: ");
-			
-			Names.put(Integer.toString(counter), name);
-			counter++;
+			Integer count = Names.get(name);
+			if (count == null) {
+				count = new Integer(1);
+				} else {
+				count = new Integer(count + 1);
+				}
+			Names.put(name, count);
 
 		}while(!(name.equals("")));
 		return Names;
