@@ -8,30 +8,30 @@ import java.util.ArrayList;
 import acm.program.*;
 
 public class countNames extends ConsoleProgram {
-public void run() {
-		
+	public void run() {
+
 		HashMap<String, Integer> Names = new HashMap<String, Integer>();
-		Names=nameGenerator();
+		Names = nameGenerator();
 		singleLineList(Names);
 	}
 
 	private void singleLineList(HashMap<String, Integer> names) {
 		// TODO Auto-generated method stub
-			Iterator<String> it = names.keySet().iterator();
-			while (it.hasNext()) {
+		Iterator<String> it = names.keySet().iterator();
+		while (it.hasNext()) {
 			String key = it.next();
 			int count = names.get(key);
-			if(key.equals("")) {
-				
-			}else {
-			println("Entry [" + key + "] has count " + count);	
+			if (key.equals("")) {
+
+			} else {
+				println("Entry [" + key + "] has count " + count);
 			}
 
-			}
+		}
 	}
 
 	private HashMap<String, Integer> nameGenerator() {
-		String name ="";
+		String name = "";
 		HashMap<String, Integer> Names = new HashMap<String, Integer>();
 		do {
 
@@ -39,12 +39,12 @@ public void run() {
 			Integer count = Names.get(name);
 			if (count == null) {
 				count = new Integer(1);
-				} else {
+			} else {
 				count = new Integer(count + 1);
-				}
+			}
 			Names.put(name, count);
 
-		}while(!(name.equals("")));
+		} while (!(name.equals("")));
 		return Names;
 	}
 }
